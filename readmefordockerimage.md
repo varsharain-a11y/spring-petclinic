@@ -24,12 +24,8 @@ Run the Jenkins job and verify that the pipeline executes successfully.
 # To obtain Docker Image
 use the following commands:
 ```
-docker pull frog-artifactory.com/petclinic:<BUILD_NUMBER>
-docker run -p 8080:8080 frog-artifactory.com/petclinic:<BUILD_NUMBER>
+
+docker run -p 8080:8080 spring-petclinic 
 
 ```
-Replace <BUILD_NUMBER> with the actual build number from the Jenkins job. 
-The first command pulls the Docker image from the Frog Artifactory registry,
-and the second command runs the image and maps the container's port 8080 to the host's port 8080, 
-allowing access the application at http://localhost:8080.
-
+this starts the spring petclinic application on 8080 port
