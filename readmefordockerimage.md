@@ -24,7 +24,7 @@ Run the Jenkins job and verify that the pipeline executes successfully.
 # To obtain Docker Image
 use the following commands:
 ```
-
+docker pull https://varsharain.jfrog.io/ui/admin/repositories/virtual/test:<BUILD_NUMBER>
 docker run -p 8080:8080 spring-petclinic 
 
 ```
