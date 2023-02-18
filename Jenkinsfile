@@ -1,20 +1,30 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'mvn test'
             }
         }
-        stage('Deploy') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Deploying....'
+                script {
+                    docker.build("petclinic:${env.BUILD_NUMBER}")
+                }
+            }
+        }
+        stage('Push Docker Image to Registry') {
+            steps {
+                script {
+                    docker.withRegistry('https://frog-artifactory.com', 'frog-registry') {
+                        docker.image("petclinic:${env.BUILD_NUMBER}").push()
+                    }
+                }
             }
         }
     }
