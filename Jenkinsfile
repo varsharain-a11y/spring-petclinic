@@ -24,7 +24,7 @@ pipeline {
         stage('Push Docker Image to Registry') {
             steps {
                 script {
-                    docker.withRegistry('https://varsharain.jfrog.io/artifactory', 'docker') {
+                    docker.withRegistry('https://varsharain.jfrog.io/artifactory', 'docker-virtual.jfrog.io') {
                         docker.image("petclinic:${env.BUILD_NUMBER}").push()
                     }
                 }
