@@ -14,9 +14,6 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        environment {
-            ARTIFACTORY_ACCESS_TOKEN = credentials ('artifactory-access-token')
-        }
         stage('Build Docker Image') {
             steps {
                 script {
